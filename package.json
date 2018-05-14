@@ -1,0 +1,26 @@
+{
+    "main": "main.js",
+    "name": "Palette",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "user",
+    "contributors": [],
+    "dependencies": {
+        "babel": "6.23.0",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
+        "react": "16.2.0",
+        "react-dom": "16.2.0",
+        "electron": "1.7.9",
+        "electron-packager": "9.1.0"
+    },
+    "scripts": {
+        "electron": "electron main.js",
+        "package": "electron-packager . test --platform=win32 --arch=x64 --version=1.7.9 --overwrite"
+    }
+}

@@ -1,0 +1,22 @@
+.dropdown-container
+{
+  position:absolute;
+  top:30px;
+  left: -130px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px 1px #aaa;
+  z-index: 5;
+}
+.dropdown-item
+{
+  padding:20px 20px;
+  font-size:1.2em;
+  color:#555;
+  word-break:keep-all;
+}
+.dropdown-item:hover
+{
+  color:#0088DC;
+  cursor: pointer;
+}

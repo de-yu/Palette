@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link  rel="stylesheet" href="../style/reset.css" >
+        <link rel="stylesheet" href="../style/main.css">
+        <link rel="stylesheet" href="../style/navigation.css">
+        <link rel="stylesheet" href="../style/edit.css">
+        <link rel="stylesheet" href="../style/DropDown.css">
+        <script src="../models/DataManger.js"></script>
+        <script src="react.min.js"></script>       
+        <script src="react-dom.min.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="jquery.js"></script>
+        <script src="scrollBar.js"></script>
+        <style>
+
+            #try
+            {
+                position:fixed;
+                top:150px;
+                right:150px;
+            }
+            </style>
+    </head>
+    
+    <body>
+        <div id="navigation"></div>
+        <div id="container">
+             <div id="all-row">
+            </div>
+            <div id="scroll">
+                <div id="slider">
+            </div> 
+        </div>
+        <div id="try">
+
+        </div>
+        
+
+    <script>
+       var color = {"headers":["abc拉6489df4v9dvf4拉拉456","bcd","lalala" ,"new"],"colors":[["#000","#111","#222","#fff","#000","#111","#222","#fff","#000","#111","#222","#fff"]
+               ,["#500000","#050000","#005000"],["#800000","#080000","#008000"],[]]}
+       var data = new DataManger(color);
+       var main;
+       
+
+         var dropdownitem = React.createClass({
+            usefunction:function(){
+                this.props.func();
+            },
+            render:function(){
+                var item = React.createElement("div" , {className:"dropdown-item" , onClick:this.usefunction} , this.props.header);  
+                return item;
+            }
+        });
+        var dropdown = React.createClass({
+             getInitialState: function() {
+                return {header:this.props.header
+                        ,func :this.props.func};  
+            },
+            render:function(){
+
+                    var arrow =  React.createElement("div" , {className:"dropdown-arrow"});
+                    var list = new Array();
+                    for(var i=0;i<this.state.header.length;i++)            
+                    {
+                        list.push(React.createElement(dropdownitem , {header:this.state.header[i]
+                            ,func:this.state.func[i]}
+                        ));
+                    }
+                    var container = React.createElement("div" , {className:"dropdown-container"} , arrow , list);
+                    return container;
+            }
+        });
+
+      var header = React.createClass({
+          getInitialState: function() {
+                 return {name:this.props.name};
+            },
+           render:function(){
+               var text = React.createElement("div" , null , this.state.name);
+               var con = React.createElement("div" , {className: "header"} , text);              
+               return con;
+           }
+       });
+       
+       var colorblock = React.createClass({
+            getInitialState: function() {
+                 return {show:true , controlstate:"none"};
+            },
+            deleteColor:function(){
+                 this.props.delcolor(this.props.id);
+            },
+            modifycolor:function(){
+                var color = prompt("輸入顏色" , "");  
+                this.props.changecolor(this.props.id , color);
+            },
+            showControl:function(){
+                  this.setState({controlstate:"block"});
+            },
+            hideControl:function(){
+                   this.setState({controlstate:"none"});
+            },
+            render:function(){
+                if(this.state.show ==true)
+                {
+                    var bg_color = this.props.color;
+                    var del = React.createElement("div" ,{className:"color-del",onClick:this.deleteColor} 
+                    , React.createElement("img" , {src:"../img/del.png"}));
+                    var edit = React.createElement("div" , {className:"color-edit" , onClick:this.modifycolor} , React.createElement("img" , {src:"../img/edit.png"}));
+                    var space = React.createElement("div" , {className:"color-space"} ,null);
+                    var controlblock = React.createElement("div" , {className:"color-control" ,onMouseOver:this.showControl , onMouseOut:this.hideControl, style:{display:this.state.controlstate}}
+                        , space , edit , del);
+                    var block =  React.createElement("div" ,{className:"color-block",onMouseOver:this.showControl , onMouseOut:this.hideControl, style:{background:bg_color}});  
+                    var container = React.createElement("div" , {className:"color-container"}, block, controlblock);
+                    return container;
+                }
+                return null;
+           }
+       });
+       var colors_list = React.createClass({
+           getInitialState: function() {
+             return {bgcolor:this.props.colors , index:this.props.index};  
+           },
+           deleteColor:function(i){
+               data.deleteColor(this.state.index , i );
+               main.updateContain();
+           },
+           modifyColor:function(i , color)
+           {
+             data.modifyColor(this.state.index , i ,color)
+             main.updateContain();
+           },
+           render:function(){
+               var block;
+               var color = new Array();
+      
+               for(var i=0;i<this.state.bgcolor.length;i++)
+               {
+                   var c =  React.createElement(colorblock , {id:i , color:this.state.bgcolor[i] , delcolor:this.deleteColor , changecolor:this.modifyColor});
+                   color.push(c);
+               }
+               
+               block = React.createElement("div" , {className: "color-list"} , color );
+               return block;
+           }
+       });
+       
+       var grid = React.createClass({
+            getInitialState: function() {
+             return {show:true , id:this.props.id , showfunction:false};  
+           },
+           show:function()
+           {
+               return this.state.show;
+           },
+           functionShowChange:function(){
+               
+               if(this.state.showfunction==false)
+                   this.setState({showfunction:true});
+               else
+                   this.setState({showfunction:false});                  
+           },
+           modifyHeader:function(){
+               var header = prompt("輸入標題" , "");  
+               data.modifyHeader(this.state.id , header);
+               main.updateContain();
+           },
+           newColor:function(){
+               var color = prompt("輸入新的顏色" , "");  
+               data.newColor(this.state.id , color);
+               main.updateContain();
+           },
+           deleteTheme:function(){
+               this.props.del(this.state.id);
+           },
+           render : function(){
+                var dropheader = new Array("標題" , "新增顏色" , "刪除這個主題");
+                var dropfunc = new Array(this.modifyHeader , this.newColor ,this.deleteTheme);
+                var spinner;
+                if(this.state.showfunction==true)
+                    spinner = React.createElement(dropdown,{header:dropheader , func:dropfunc , show:this.state.showfunction});
+                else
+                    spinner = null;
+                var functionbut = React.createElement("div" , {className:"grid-all-function" , onClick:this.functionShowChange}
+                                    , React.createElement("img" , {src:"../img/functionlist.png"}) , spinner);            
+                var all = React.createElement("div" , {className:"grid-all"} , this.props.header , this.props.color,functionbut);
+                var container = React.createElement("div" , {className:"grid"} ,all);
+                return container;
+            }
+        });
+       
+       var contain = React.createClass({
+           getInitialState: function() {
+             
+             return {maxkey:0};  
+           },
+           addNewList : function(){
+               data.newTheme({headers:"new" , colors:new Array()});
+               this.forceUpdate();             
+           },
+           deleteElement: function(index){
+
+               data.delete(index);
+               this.forceUpdate(); 
+           },
+           search:function(query)
+           {
+               data.setSearch(query);
+               this.forceUpdate();
+           },
+           updateContain:function(){
+               this.forceUpdate();
+           },
+           render:function(){
+               console.log("contain update");
+               var newbut = React.createElement("div" , {className:"grid" , style:{display:"block"}}
+                            , React.createElement("div" , {className:"newlist-but" , onClick:this.addNewList} , "new"));          
+               var row = new Array();
+               var renderdata = data.getData();
+               
+               for(var i=0;i<renderdata.headers.length;i++)
+               {
+                   var addheader = React.createElement(header  , {name:renderdata.headers[i]})
+                  , addcolor = React.createElement(colors_list , {colors:renderdata.colors[i] , index:i});
+
+                  var a = React.createElement(grid , {key:this.state.maxkey , header:addheader ,color:addcolor, id:i , del:this.deleteElement}); 
+                  row.push(a);    
+                  this.state.maxkey++;
+               }
+              
+               var all = React.createElement("div" , {onClick:this.refresh} , row );
+               return all;
+           }
+       });
+
+        main = ReactDOM.render(
+        React.createElement(contain),
+        document.getElementById('all-row')
+        );
+
+        var navigation = React.createClass({
+            newtheme:function()
+            {
+                this.props.newtheme();
+            },
+            search:function()
+            {
+                this.props.search(this.refs.searchquery.value);
+            },render:function(){
+                var logo = React.createElement("img" , {src:"../img/palette.png" , className:"navigation-logo"});
+                var search = React.createElement("input" , {type:"input" , className:"navigation-search" , ref:"searchquery"});
+                var searchbut = React.createElement("div" , {className:"navigation-searchbut" ,onClick:this.search} , React.createElement("img" , {src:"../img/search.png"}));
+                var newthemebut = React.createElement("span" , {className:"navigation-action" , onClick:this.newtheme} , React.createElement("span" , null ,"新增主題"));
+                var container = React.createElement("div" , {className:"navigation"}, logo, search , searchbut , newthemebut);
+                
+                return container;
+            }
+        });
+        
+        
+         ReactDOM.render(
+         React.createElement(navigation , {newtheme:main.addNewList , search:main.search}),
+        document.getElementById('navigation')
+        );
+        
+                   $("#one").scrollBar();
+    </script>
+    </body>
+</html>

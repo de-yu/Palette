@@ -1,0 +1,134 @@
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Palette</title>
+    <link rel="stylesheet" href="style/reset.css"> 
+    <link rel="stylesheet" href="style/navigation.css"> 
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/edit.css">
+    <link rel="stylesheet" href="style/DropDown.css">   
+    <link rel="stylesheet" href="style/colorpicker.css"> 
+    <link rel="stylesheet" href="templates/popupboxStyle/popupbox.css">
+  </head>
+  
+  <body>
+      <div id="navigation">
+          
+      </div>  
+    <div id="container">
+            <div id="all-row">
+            </div>
+            <div id="scroll">
+                <div id="slider">
+                </div>
+            </div>    
+    </div>
+    <div id="colorpicker">
+        <div class="colorpicker-all">
+        <div class="color-choose">
+		<div class="colormap"><div id="cp1_ColorMap"></div></div>
+		<div class="colorbar"><div id="cp1_ColorBar"></div></div>
+	 </div>
+		<div class="colordata">	
+                    <div class="colordata-block-show">					
+				<div id="cp1_Preview"></div>
+                    </div>       
+                    <div class="colordata-block">
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_HueRadio" name="cp1_Mode" value="0" />
+                                <div class="check"><div class="inside"></div></div>                                                                
+                                <label for="cp1_HueRadio">H</label>
+                                <input type="text" id="cp1_Hue" value="0"/>
+                        </div>
+
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_SaturationRadio" name="cp1_Mode" value="1" />
+                                <div class="check"><div class="inside"></div></div>
+                                <label for="cp1_SaturationRadio">S</label>            
+                                <input type="text" id="cp1_Saturation" value="100" />
+                        </div>
+
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_BrightnessRadio" name="cp1_Mode" value="2" />
+                                <div class="check"><div class="inside"></div></div>
+                                <label for="cp1_BrightnessRadio">B</label>
+                                <input type="text" id="cp1_Brightness" value="100"/>
+                        </div>
+                        <div class="colordata-row" id="colordata-copy">
+                                <input type="text" id="cp1_Hex" value="FF0000" />
+                                <button class="copycolor" data-clipboard-action="copy" data-clipboard-target="#cp1_Hex">Copy</button>
+                        </div>
+                    </div>       
+                    <div class="colordata-block">
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_RedRadio" name="cp1_Mode" value="r" />
+                                <div class="check"><div class="inside"></div></div>        
+                                <label for="cp1_RedRadio">R</label>       
+                                <input type="text" id="cp1_Red" value="255" />
+                        </div>
+
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_GreenRadio" name="cp1_Mode" value="g" />
+                                <div class="check"><div class="inside"></div></div>        
+                                <label for="cp1_GreenRadio">G</label>
+                                <input type="text" id="cp1_Green" value="0" />
+                        </div>
+
+                        <div class="colordata-row">
+                                <input type="radio" id="cp1_BlueRadio" name="cp1_Mode" value="b" />
+                                <div class="check"><div class="inside"></div></div>        
+                                <label for="cp1_BlueRadio">B</label>
+                                <input type="text" id="cp1_Blue" value="0" />
+                        </div>
+			</div>
+		</div>
+          </div>  
+    </div>
+  </body>
+  <script>
+
+  </script>  
+
+   <script src="react/ScrollBar.js"></script>   
+  <script type="text/javascript" src="colorpicker/prototype.js" ></script>
+  <script type="text/javascript" src="colorpicker/colorpicker/colormethods.js" ></script>
+  <script type="text/javascript" src="colorpicker/colorpicker/colorvaluepicker.js" ></script>
+  <script type="text/javascript" src="colorpicker/colorpicker/slider.js" ></script>
+  <script type="text/javascript" src="colorpicker/colorpicker/colorpicker.js" ></script>
+  
+  <script src="templates/PopupBox.js"></script>
+  <script src="react/react.min.js"></script>   
+  <script src="react/react-dom.min.js"></script>
+  <script src="react/browser.min.js"></script>
+  <script src="react/clipboard.min.js"></script>
+  <script src="models/ReadData.js"></script>
+  <script src="models/WriteData.js"></script>
+  <script src="models/DataManger.js"></script>
+  <script src="controller/Controller.js"></script>
+
+  <script src="templates/index.js"></script>
+  <script src="view/View.js"></script> 
+
+  
+  <script>
+
+var cp1 = new Refresh.Web.ColorPicker('cp1',{startHex: 'ffffff', startMode:'s'});
+    cp1.positionMapAndSliderArrows();
+	window.addEventListener("resize" , function(){
+            cp1.positionMapAndSliderArrows();
+        });
+
+
+    delete Array.prototype.toJSON;
+    var c = new Controller();
+    c.execute();
+
+
+    setTimeout(function(){cp1.positionMapAndSliderArrows();},30);
+    var clipboard = new Clipboard('.copycolor');
+            var test = new ScrollBar({content:"all-row" , scrollAndContent:"container" ,scroll:"scroll" , slider:"slider"});
+
+  </script>  
+
+</html>
