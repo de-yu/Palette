@@ -177,9 +177,6 @@
                                data.modifyHeader(id , value.header);
                 main.updateContain();
              }})
-              /* var header = prompt("輸入標題" , "");  
-               data.modifyHeader(this.state.id , header);
-               main.updateContain();*/
            },
            newColor:function(){
 
@@ -189,9 +186,6 @@
                 data.newColor(id , value.color);
                 main.updateContain();
              }})
-              /*var color = prompt("輸入新的顏色" , "");  
-               data.newColor(this.state.id , color);
-               main.updateContain();*/
            },
            deleteTheme:function(){
                this.props.del(this.state.id);

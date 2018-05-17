@@ -1,0 +1,93 @@
+#navigation
+{
+    background: #fff;
+    position:fixed;
+    top:0;
+    left:350px;
+    width:calc(100% - 350px);
+    min-width:850px; 
+    height:50px;
+    box-shadow:5px 2px 10px 1px #ddd;
+    z-index: 4;
+}
+.navigation
+{
+    display:flex;
+}
+.navigation-logo
+{
+    position:relative;
+    left:5%;
+    height:50px;
+}
+.navigation-search
+{
+    position:relative;
+    top:10px;
+    left:10%;
+    width:250px;
+    height:30px;
+    border:1px solid #bbb;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 0px 10px;
+    outline: 0;
+    font-size:1em;
+}
+.navigation-searchbut
+{
+    position:relative;
+    top:10px;
+    left:10%;
+    background: #eee;
+    width:30px;
+    height:28px;
+    border:1px solid #bbb;
+    border-left:0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.navigation-searchbut:hover
+{
+    cursor: pointer;
+}
+.navigation-searchbut img
+{
+    position: relative;
+    top:6px;
+    left:6px;
+    width: 18px;
+}
+.navigation-searchclear
+{
+    color:#aaa;
+    position: relative;
+    left:15%;
+    line-height:50px;
+}
+.navigation-searchclear:hover
+{
+    cursor:pointer;
+}
+.navigation-action
+{
+    position:relative;
+    left:25%;
+    display:block;
+    float: right;
+    width:70px; 
+    padding:0px 10px;
+    text-decoration: none;
+    text-align: center;
+    
+}
+.navigation-action span
+{
+    color:#aaa;
+    line-height: 50px;
+}
+.navigation-action span:hover
+{
+    cursor: pointer;
+}

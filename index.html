@@ -91,44 +91,44 @@
   </script>  
 
    <script src="react/ScrollBar.js"></script>   
+
+  
+  <script src="templates/PopupBox.js"></script>
+  <script src="react/clipboard.min.js"></script>
+  
+  <script>
+require('babel-register');
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var WriteData = require('./models/WriteData');
+var ReadData = require("./models/ReadData");
+var DataManger = require("./models/DataManger");
+var View = require("./view/View");
+
+var readdata = new ReadData();
+var data = new DataManger(readdata.getData());
+
+var Controller = require("./controller/Controller");
+
+var c = new Controller();
+c.execute();
+//var test = new ScrollBar({content:"all-row" , scrollAndContent:"container" ,scroll:"scroll" , slider:"slider"});*/
+
+  </script>  
   <script type="text/javascript" src="colorpicker/prototype.js" ></script>
   <script type="text/javascript" src="colorpicker/colorpicker/colormethods.js" ></script>
   <script type="text/javascript" src="colorpicker/colorpicker/colorvaluepicker.js" ></script>
   <script type="text/javascript" src="colorpicker/colorpicker/slider.js" ></script>
   <script type="text/javascript" src="colorpicker/colorpicker/colorpicker.js" ></script>
-  
-  <script src="templates/PopupBox.js"></script>
-  <script src="react/react.min.js"></script>   
-  <script src="react/react-dom.min.js"></script>
-  <script src="react/browser.min.js"></script>
-  <script src="react/clipboard.min.js"></script>
-  <script src="models/ReadData.js"></script>
-  <script src="models/WriteData.js"></script>
-  <script src="models/DataManger.js"></script>
-  <script src="controller/Controller.js"></script>
-
-  <script src="templates/index.js"></script>
-  <script src="view/View.js"></script> 
-
-  
   <script>
-
-var cp1 = new Refresh.Web.ColorPicker('cp1',{startHex: 'ffffff', startMode:'s'});
+    var cp1 = new Refresh.Web.ColorPicker('cp1',{startHex: 'ffffff', startMode:'s'});
+cp1.positionMapAndSliderArrows();
+    
+window.addEventListener("resize" , function(){
     cp1.positionMapAndSliderArrows();
-	window.addEventListener("resize" , function(){
-            cp1.positionMapAndSliderArrows();
-        });
+});
+setTimeout(function(){cp1.positionMapAndSliderArrows();},30);
 
-
-    delete Array.prototype.toJSON;
-    var c = new Controller();
-    c.execute();
-
-
-    setTimeout(function(){cp1.positionMapAndSliderArrows();},30);
-    var clipboard = new Clipboard('.copycolor');
-            var test = new ScrollBar({content:"all-row" , scrollAndContent:"container" ,scroll:"scroll" , slider:"slider"});
-
-  </script>  
-
+    </script>
 </html>

@@ -1,8 +1,9 @@
-function ReadData()
+class ReadData
 {
+  constructor(){
     this.fs = require("fs");
-}
-ReadData.prototype.createData =function()
+  }
+  createData()
 {
      var newdata = {
             "headers":["new"],"colors":[[]]}
@@ -12,10 +13,14 @@ ReadData.prototype.createData =function()
         
         var box = new PopupBox("提示");
         box.alert({contenttext:"創建成功"});
-};
-ReadData.prototype.getData = function()
+}
+getData()
 {
         var text = this.fs.readFileSync("./data/themes.json" , 'utf-8');
         var jsonthemedata = JSON.parse(text);
         return jsonthemedata;
-};
+}
+
+}
+
+module.exports =ReadData;

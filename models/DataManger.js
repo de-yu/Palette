@@ -1,44 +1,46 @@
-function DataManger(data)
+class DataManger
 {
+  constructor(data)
+  {
     this.data = data;
     this.search = false;
     this.searchdata = {headers:new Array() , colors:new Array()};
-}
-DataManger.prototype.delete = function(index)
+  }
+  deleteA(index)
 {
     for (var key in this.data)
     {
         this.data[key].splice(index , 1);
     }
 }
-DataManger.prototype.deleteColor = function(index , i)
+deleteColor(index , i)
 {
      this.data["colors"][index].splice(i , 1);
 }
-DataManger.prototype.newTheme = function(newdata)
+newTheme(newdata)
 {
     for (var key in this.data)
     {
         this.data[key].push(newdata[key]);
     }
 }
-DataManger.prototype.newColor = function(index , value)
+newColor(index , value)
 {
  this.data["colors"][index].push(value);
 }
-DataManger.prototype.modifyHeader = function(index , value)
+modifyHeader(index , value)
 {
     this.data["headers"][index] = value;
 }
-DataManger.prototype.modifyColor = function(index ,i ,  value)
+modifyColor (index ,i ,  value)
 {
     this.data["colors"][index][i] = value;
 }
-DataManger.prototype.refresh = function(data)
+refresh(data)
 {
     this.data = data;
 }
-DataManger.prototype.setSearch = function(query)
+setSearch(query)
 {
     this.search = true;
     var searchdata = {headers:new Array() , colors:new Array()};
@@ -55,17 +57,24 @@ DataManger.prototype.setSearch = function(query)
     
     this.searchdata = searchdata;
 }
-DataManger.prototype.clearSearch = function()
+clearSearch()
 {
     this.search = false;
     this.searchdata = {headers:new Array() , colors:new Array()};
 }
-DataManger.prototype.getData = function()
+getData()
 {
     console.log(JSON.stringify(this.data));
     if(this.search)
+    {
         return this.searchdata;
+    }
     else
+    {
         return this.data;
+    }
 }   
 
+}
+
+module.exports = DataManger;

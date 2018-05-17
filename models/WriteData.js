@@ -1,13 +1,18 @@
-function WriteData()
+class WriteData
 {
+  constructor()
+  {
     this.fs = require("fs");
-}
-WriteData.prototype.save = function(data)
-{
-    
-    var jsondata = JSON.stringify(data);
-    var box = new PopupBox("提示");
-    this.fs.writeFileSync("./data/themes.json" , jsondata, "utf-8");
+  }
+  save (data)
+  {
 
-    box.alert( {contenttext:"儲存成功"});
-};
+      var jsondata = JSON.stringify(data);
+      var box = new PopupBox("提示");
+      this.fs.writeFileSync("./data/themes.json" , jsondata, "utf-8");
+
+      box.alert( {contenttext:"儲存成功"});
+  }
+}
+
+module.exports =WriteData;
