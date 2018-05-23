@@ -23,7 +23,7 @@ class ColorList extends React.Component
               {
                 this.state.bgcolor.map(function(color , index){
                   return (
-                          <ColorBlock key={index} color={this.state.bgcolor[index]} delcolor={this.deleteColor} changecolor={this.modifyColor} />
+                          <ColorBlock key={index} color={this.state.bgcolor[index]} delcolor={this.deleteColor.bind(this)} changecolor={this.modifyColor.bind(this)} />
                           )              
                   }.bind(this))
               }

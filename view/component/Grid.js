@@ -1,11 +1,15 @@
 'use babel';
 
+var DropDown = require("./DropDown");
+var Header = require("./Header");
+var ColorList = require("./ColorList");
+
 class Grid extends React.Component
 {
     constructor(props)
     {
       super(props);
-      this.state = {show:true , id:this.props.id , showfunction:false};  
+      this.state = {show:true , id:this.props.id , showfunction:false , data:data.getRowData(this.props.id)};  
     }
     show()
     {
@@ -43,6 +47,7 @@ class Grid extends React.Component
     render(){
          var dropheader = new Array("標題" , "新增顏色" , "刪除這個主題");
          var dropfunc = new Array(this.modifyHeader , this.newColor ,this.deleteTheme);
+         console.log(this.state.data);
          var show = null;
          
          if(this.state.showfunction)
@@ -53,9 +58,9 @@ class Grid extends React.Component
          return (
                  <div className="grid">
                     <div className="grid-all">
-                        {this.props.header}
-                        {this.props.color}
-                        <div className="grid-all-function" onClick={this.functionShowChange}>
+                        <Header name={this.state.data['header']} />
+                        <ColorList colors={this.state.data['colors']} index={this.state.id} />
+                        <div className="grid-all-function" onClick={this.functionShowChange.bind(this)}>
                           <img src="./img/functionlist.png" />
                           {show}                           
                         </div>        

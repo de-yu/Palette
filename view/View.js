@@ -26,11 +26,11 @@ class View
     var main = ReactDOM.render(
             <Container  />,
         document.getElementById('all-row')
-    )
-    /*ReactDOM.render(
+    );
+    ReactDOM.render(
             <Nav  newtheme={main.addNewList}  search={main.search}  savedata={main.save} clearSearch={main.clearSearch} />,
         document.getElementById('navigation')
-    )*/
+    );
 
   }
 }

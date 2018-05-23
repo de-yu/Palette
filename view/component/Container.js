@@ -2,8 +2,7 @@
 'use babel';
 
 var Grid = require("./Grid");
-var Header = require("./Header");
-var ColorList = require("./ColorList");
+
 
 class Container extends React.Component
 {
@@ -11,6 +10,10 @@ class Container extends React.Component
     {
         super(props);
         this.state = {maxkey:0};
+        this.addNewList = this.addNewList.bind(this);
+        this.deleteElement = this.deleteElement.bind(this);
+        this.search = this.search.bind(this);
+        this.clearSearch = this.search.bind(this);
     }
     addNewList(){
         data.newTheme({headers:"new" , colors:new Array()});
@@ -42,14 +45,11 @@ class Container extends React.Component
         var renderdata = data.getData();
         console.log(renderdata);
         var element =  renderdata.headers.map(function(element , index){
-          var header = <Header name={element} />;
-          var colorlist = <ColorList colors={renderdata.colors[index]}  index={index} />;
-          
-            return (<Grid  header={header}  color={colorlist}  key={index} id={index}  del={this.deleteElement} />);
+            return (<Grid   key={index} id={index}  del={this.deleteElement.bind(this)} />);
         }.bind(this));
         
         return(                
-                <div onClick={this.refresh}>
+                <div onClick={this.updateContain.bind(this)}>
                 {element}
                 </div>
         );

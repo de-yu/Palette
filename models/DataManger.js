@@ -6,7 +6,7 @@ class DataManger
     this.search = false;
     this.searchdata = {headers:new Array() , colors:new Array()};
   }
-  deleteA(index)
+  delete(index)
 {
     for (var key in this.data)
     {
@@ -61,6 +61,10 @@ clearSearch()
 {
     this.search = false;
     this.searchdata = {headers:new Array() , colors:new Array()};
+}
+getRowData(index)
+{
+  return {'header':this.data['headers'][index] , 'colors':this.data['colors'][index]}
 }
 getData()
 {

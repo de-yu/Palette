@@ -13,7 +13,7 @@ class DropDownItem extends React.Component
     }
     render(){
         return(
-                <div className="dropdown-item" onClick={this.usefunction}>
+                <div className="dropdown-item" onClick={this.usefunction.bind(this)}>
                   {this.props.header}
                 </div>
         );

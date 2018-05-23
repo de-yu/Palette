@@ -18,9 +18,9 @@ class DropDown extends React.Component
                           this.state.header.map(function(header , index){
                             
                             return (
-                                    <DropDownItem header={header} key=index func={this.state.func[index]} />
+                                    <DropDownItem  header={header} key={index} func={this.state.func[index]} />
                             );                       
-                          })
+                          }.bind(this))
                       }
                       </div>
               );

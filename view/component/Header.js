@@ -13,7 +13,7 @@ class Header extends React.Component
       return(
               <div className="header">
                 <div>
-                  {this.statename}
+                  {this.state.name}
                 </div>
               </div>
               );

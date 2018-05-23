@@ -37,14 +37,14 @@ class ColorBlock extends React.Component
            var display = {display:this.state.controlstate};
            return (
                <div className="color-container">
-                  <div className="color-block" onClick={this.setColorHex} onMouseOver={this.showControl.bind(this)} onMouseOut={this.hideControl.bind(this)} style={bg_color}>
+                  <div className="color-block" onClick={this.setColorHex.bind(this)} onMouseOver={this.showControl.bind(this)} onMouseOut={this.hideControl.bind(this)} style={bg_color}>
                   </div>
                   <div className="color-control" onMouseOver={this.showControl.bind(this)} onMouseOut={this.hideControl.bind(this)}  style={display}>
                           <div className="color-space"></div>
-                          <div className="color-edit" onClick={this.modifycolor}>
+                          <div className="color-edit" onClick={this.modifycolor.bind(this)}>
                                   <img src="./img/edit.png" />
                           </div>
-                          <div className="color-del" onClick={this.deleteColor}>
+                          <div className="color-del" onClick={this.deleteColor.bind(this)}>
                                   <img src="./img/del.png" />                                  
                           </div>
                   </div>                 
