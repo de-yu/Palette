@@ -13,6 +13,12 @@ class WriteData
 
       box.alert( {contenttext:"儲存成功"});
   }
+  saveNoBox(data)
+  {
+      var jsondata = JSON.stringify(data);
+      this.fs.writeFileSync("./data/themes.json" , jsondata, "utf-8");
+  }
+
 }
 
 module.exports =WriteData;

@@ -1,4 +1,4 @@
-/* global Refresh, indexrender */
+/* global Refresh, indexrender, ReactDOM */
 'use babel';
 
 class View
@@ -7,19 +7,8 @@ class View
   {
       this.writedata = new WriteData();
   }
-  firstRun()
-  {
-    
-  }
   index(themedata)
-  {/*
-    var nav = indexrender.navigationRender();
-    var main = indexrender.containerRender(data , this.writedata);
-    
-    ReactDOM.render(
-         React.createElement(nav , {newtheme:main.addNewList  , search:main.search , savedata:main.save , clearSearch:main.clearSearch}),
-        document.getElementById('navigation')
-    );*/
+  {
     var Nav = require("./component/Navigation");
     var Container = require("./component/Container");
     

@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <title>Palette</title>
-    <link rel="stylesheet" href="style/reset.css"> 
-    <link rel="stylesheet" href="style/navigation.css"> 
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/edit.css">
-    <link rel="stylesheet" href="style/DropDown.css">   
-    <link rel="stylesheet" href="style/colorpicker.css"> 
-    <link rel="stylesheet" href="templates/popupboxStyle/popupbox.css">
+    <link rel="stylesheet" href="css/reset.css"> 
+    <link rel="stylesheet" href="css/navigation.css"> 
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/edit.css">
+    <link rel="stylesheet" href="css/DropDown.css">   
+    <link rel="stylesheet" href="css/colorpicker.css"> 
+    <link rel="stylesheet" href="css/popupbox.css">
   </head>
   
   <body>
@@ -90,11 +90,10 @@
 
   </script>  
 
-   <script src="react/ScrollBar.js"></script>   
+   <script src="js/ScrollBar.js"></script>   
 
   
-  <script src="templates/PopupBox.js"></script>
-  <script src="react/clipboard.min.js"></script>
+  <script src="js/PopupBox.js"></script>
   
   <script>
 require('babel-register');
@@ -107,13 +106,14 @@ var DataManger = require("./models/DataManger");
 var View = require("./view/View");
 
 var readdata = new ReadData();
+var savedata = new WriteData();
 var data = new DataManger(readdata.getData());
+savedata.saveNoBox(readdata.getData()); //第一次啟動新增資料
 
-var Controller = require("./controller/Controller");
+var view = new View();
+view.index();
 
-var c = new Controller();
-c.execute();
-//var test = new ScrollBar({content:"all-row" , scrollAndContent:"container" ,scroll:"scroll" , slider:"slider"});*/
+var scroll = new ScrollBar({content:"all-row" , scrollAndContent:"container" ,scroll:"scroll" , slider:"slider"});
 
   </script>  
   <script type="text/javascript" src="colorpicker/prototype.js" ></script>

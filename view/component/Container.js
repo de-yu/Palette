@@ -1,4 +1,6 @@
 
+/* global data, savedata */
+
 'use babel';
 
 var Grid = require("./Grid");
@@ -43,7 +45,6 @@ class Container extends React.Component
     }
     render(){
         var renderdata = data.getData();
-        console.log(renderdata);
         var element =  renderdata.headers.map(function(element , index){
             return (<Grid   key={index} id={index}  del={this.deleteElement.bind(this)} />);
         }.bind(this));
