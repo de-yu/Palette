@@ -5,9 +5,9 @@ class ReadData
   }
 getData()
 {
-        if(this.fs.existsSync("./data/themes.json"))
+        if(this.fs.existsSync(__dirname + "./../data/themes.json"))
         {
-        var text = this.fs.readFileSync("./data/themes.json" , 'utf-8');
+        var text = this.fs.readFileSync(__dirname +"./../data/themes.json" , 'utf-8');
         var jsonthemedata = JSON.parse(text);
         return jsonthemedata;
         }
