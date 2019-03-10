@@ -486,7 +486,6 @@ Refresh.Web.ColorPicker.prototype = {
 		}
 		this._map.xValue = mapXValue;
 		this._map.yValue = mapYValue;
-              console.log(mapXValue +" "+mapYValue);
 		this._map.setArrowPositionFromValues();
 	},
 	updateVisuals: function() {

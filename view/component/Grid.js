@@ -47,7 +47,6 @@ class Grid extends React.Component
     render(){
          var dropheader = new Array("標題" , "新增顏色" , "刪除這個主題");
          var dropfunc = new Array(this.modifyHeader , this.newColor ,this.deleteTheme);
-         console.log(this.state.data);
          var show = null;
          
          if(this.state.showfunction)

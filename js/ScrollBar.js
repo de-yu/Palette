@@ -92,7 +92,6 @@ function ScrollBar(selector)
     {
         setCss(content , {top:topValue + "px"});
         setCss(slider , {top: -getHeight(scroll)*topValue/getHeight(content) + "px"});
-        console.log(-getHeight(scroll)*topValue/getHeight(content));
     }
     function contentTopAndSliderTopAnimation(state , newContentPosTop)
     {
@@ -268,11 +267,6 @@ function ScrollBar(selector)
             }
             , end: function () {
                 draging = false;
-                /*if (leave)
-                {
-                    now_slider.hide('fast');
-                    now_scroll.hide('fast');
-                }*/
                 selectProhibit(false);
             }
         });
