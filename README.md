@@ -42,7 +42,7 @@
 
 ## 執行畫面
 
-! [Alt text](./readmeImg/readme.png)
+![執行畫面](https://raw.githubusercontent.com/de-yu/Palette/master/readmeImg/readme.PNG)
 
 ## Built With
 
